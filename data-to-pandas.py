@@ -7,10 +7,10 @@ idPhrase = []
 sentiment = []
 
 # obtain all instances of development data with negative sentiment
-fileNames = os.listdir(filePath + "train/neg/")
+fileNames = os.listdir(filePath + "test/neg/")
 negSentences = []
 for i in range(1, len(fileNames)):
-    file = open(filePath + "train/neg/" + fileNames[i], 'r')
+    file = open(filePath + "test/neg/" + fileNames[i], 'r')
     negSentences.append(file.read())
     idPhrase.append(fileNames[i])
     sentiment.append("0")
@@ -20,10 +20,10 @@ print(len(negSentences))
 negSeries = pd.Series(negSentences)
 
 # obtain all instances of dev data with positive sentiment
-fileNames = os.listdir(filePath + "train/pos/")
+fileNames = os.listdir(filePath + "test/pos/")
 posSentences = []
 for i in range(1, len(fileNames)):
-    file = open(filePath + "train/pos/" + fileNames[i], 'r')
+    file = open(filePath + "test/pos/" + fileNames[i], 'r')
     posSentences.append(file.read())
     idPhrase.append(fileNames[i])
     sentiment.append("1")
@@ -34,4 +34,4 @@ d = {'id': pd.Series(idPhrase), 'sentence': pd.Series(negSentences+posSentences)
 df = pd.DataFrame(d)
 print(df.index)
 print(df.columns)
-df.to_csv("sentences.csv")
+df.to_csv("testSentences.csv")
